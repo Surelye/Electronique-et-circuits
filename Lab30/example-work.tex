@@ -38,8 +38,13 @@
 % выделение ссылок цветом. чтобы включить- true
 \usepackage[colorlinks=false]{hyperref}
 
+\graphicspath{{figures/}}
+
 \renewcommand{\rmdefault}{cmr} % курсив и полужирный включаются здесь.
 \newcommand{\eqdef}{\stackrel {\rm def}{=}}
+
+\usepackage{stackengine}
+\newcommand\xrowht[2][0]{\addstackgap[.5\dimexpr#2\relax]{\vphantom{#1}}}
 
 \newtheorem{lem}{Лемма}
 
@@ -134,14 +139,64 @@
 \textbf{DC} и установить в диалоговых окнах компонентов их параметры или режимы 
 работы. \textbf{Скопировать} схему на страницу отчета.
 
+\begin{figure}[h]
+	\center{\includegraphics[scale=0.8]{dc.png}}
+	\caption{Схема дешифратора.}
+\end{figure}
+
 \par \textbf{Запустить} программу моделирования дешифратора. Последовательно 
 \textbf{подавать} на вход дешифратора логические слова. \textbf{Убедиться}, что при 
 подаче на вход дешифратора каждой новой двоичной кодовой комбинации засвечивается 
 только один пробник, который «распознает» свой входной код.
+
+\newpage
+
+\par Действительно, при подаче на вход дешифратора новой двоичной последовательности, 
+засвечивается тот пробник, который распознаёт соответствующий код. Так, например для 
+последовательности, состоящей из 32 нулей, загорится синий индикатор:
+
+\begin{figure}[h]
+	\center{\includegraphics[scale=0.8]{blue_light.png}}
+	\caption{Распознавание последовательности синим индикатором.}
+\end{figure}
+
+\par Для последовательности, состоящей из 31 нуля и 1 единицы, загорится зелёный индикатор:
+
+\begin{figure}[h]
+	\center{\includegraphics[scale=0.8]{green_light.png}}
+	\caption{Распознавание последовательности зелёным индикатором.}
+\end{figure}
+
+\newpage
+
 \par \textbf{Скопировать} временные диаграммы входных и выходных сигналов дешифратора
-на страницу отчета. По результатам моделирования \textbf{составить} и 
-\textbf{заполнить} таблицу переключений (функций $ Y_i = (A_iB_iC_i; \, G_ii)) $ на
-выходах дешифратора \textbf{DC} 3х8.
+на страницу отчета. 
+
+\begin{figure}[h]
+	\center{\includegraphics{diagrams.png}}
+	\caption{Временные диаграммы входных и выходных сигналов дешифратора.}
+\end{figure}
+
+\par По результатам моделирования \textbf{составить} и \textbf{заполнить} таблицу переключений 
+(функций $ Y_i = (A_iB_iC_i; \, G_i)) $ на выходах дешифратора \textbf{DC} 3х8.
+
+\begin{table}[h!]
+	\captionsetup{justification=centering}
+	\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+		\hline\xrowht[()]{10pt}
+		$ A_i $ & $ \; 0 \; $ & $\; 1 \; $ & $ \; 0 \; $ & $ \; 1 \; $ & $ \; 0 \; $ & 
+		$ \; 1 \; $ & $ \; 0 \; $ & $ \; 1 \; $ \\
+		\hline\xrowht[()]{10pt}
+		$ B_i \; $ & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 1 \\
+		\hline\xrowht[()]{10pt}
+		$ C_i \; $ & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 1 \\
+		\hline\xrowht[()]{10pt}
+		$ G_i $ & $ (0; 2) \mu $ & $ (2; 4) \mu $ & $ (4; 6) \mu $ & $ (6; 8) \mu $ & 
+		$ (8; 10) \mu $ & $ (10; 12) \mu $ & $ (12; 14) \mu $ & $ (14; 16) \mu $ \\
+		\hline		
+	\end{tabular}
+	\caption{Таблица переключений функций $ Y_i = (A_iB_iC_i; \, G_i)) $.} 
+\end{table}
 
 \newpage 
 
@@ -151,8 +206,14 @@
 \par Открыть файл \textbf{30.8.ms10}, размещенный в папке 
 \textbf{Circuit Design Suitе 10.0} среды МS10, или собрать на рабочем поле 
 среды MS10 схему для испытания шифратора \textbf{СD} и установить в диалоговых окнах 
-компонентов их параметры или режимы работы. 
-\par \textbf{Скопировать} схему на страницу отчета.
+компонентов их параметры или режимы работы. \textbf{Скопировать} схему на страницу отчета.
+
+\begin{figure}[h]
+	\center{\includegraphics{cd.png}}
+	\caption{Схема шифратора.}
+\end{figure}
+
+\newpage
 
 \par \textbf{Запустить} программу моделирования шифратора. Последовательно 
 \textbf{подавать} на вход дешифратора логические слова. \textbf{Убедиться}, что при 
@@ -162,8 +223,46 @@
 \textbf{A0A1A2}, где \textbf{А0 = А}, \textbf{А1 = В} и \textbf{А2 = С}, 
 соответствующие двоичным кодовым комбинациям на входе дешифратора \textbf{DC}.
 
+\begin{figure}[h]
+	\center{\includegraphics{one_is_given.png}}
+	\caption{Подача на вход шифратора последовательности 00000001.}
+\end{figure}
+
+\begin{figure}[h]
+	\center{\includegraphics{two_is_given.png}}
+	\caption{Подача на вход шифратора последовательности 00000010.}
+\end{figure}
+
+\newpage
+
+\begin{figure}[h]
+	\center{\includegraphics{four_is_given.png}}
+	\caption{Подача на вход шифратора последовательности 00000100.}
+\end{figure}
+
 \par По результатам моделирования \textbf{составить} и \textbf{заполнить} таблицу
 переключений на выходе шифратора \textbf{CD} 8х3.
+
+\begin{table}[h!]
+	\captionsetup{justification=centering}
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+		\hline\xrowht[()]{10pt}
+		& $ \quad \emptyset \quad $ & $ \; X_0 \; $ & $ \; X_1 \; $ & $ \; X_0X_1 \; $ & $ \; X_2 \; $ &
+		$ \; X_0X_2 \; $ & $ \; X_1X_2 \; $ & $ \; X_0X_1X_2 \; $ \\
+		\hline\xrowht[()]{10pt}
+		$ A_i \; $ & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 1 \\
+		\hline\xrowht[()]{10pt}
+		$ B_i \; $ & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 1 \\
+		\hline\xrowht[()]{10pt}
+		$ C_i \; $ & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 1 \\
+		\hline
+	\end{tabular}
+	\caption{Таблица переключений на выходе шифратора.} 
+\end{table}
+
+\newpage
+
 \par \textbf{Преобразовать} схему дешифратора \textbf{DC} 3х8 и шифратора 
 \textbf{CD} 8х3 в схему \textbf{DC} 2х4 и шифратора \textbf{CD} 4х2, отсоединив 
 провод \textbf{С}, подходящий к дешифратору, и провод \textbf{A2} с выхода шифратора, 
@@ -173,6 +272,15 @@
 
 \section*{Задание 3.}
 \addcontentsline{toc}{section}{Задание 3}
+
+\par Открыть файл \textbf{30.9.ms10}, размещенный в папке 
+\textbf{Circuit Design Suitе 10.0} среды МS10, или собрать на рабочем поле среды MS10 
+схему для испытания \textit{демультиплексора} \textbf{DMS} и установить в диалоговых 
+окнах компонентов их параметры или режимы работы.
+
+\par Для обеспечения медленного перемещения лучей на экране анализатора
+\textbf{XLA1 установить} частоту его таймера $ f_a $ = 500 Гц и число импульсов, 
+приходящихся на одно деление, \textbf{Clocs/div} = 80.
 
 \newpage
 
@@ -186,7 +294,8 @@
 
 \newpage
 
-\section{Тестовые задания.}
+\section*{Тестовые задания.}
+\addcontentsline{toc}{section}{Тестовые задания}
 
 \newpage
 

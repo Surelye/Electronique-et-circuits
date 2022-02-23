@@ -19,5 +19,5 @@
 *.jpg
 *.fdb_latexmk
 *.txt
-Lab29.synctex(busy)
-CircuitLab29.ms10 (Security copy)
+*.synctex(busy)
+*.ms10 (Security copy)
