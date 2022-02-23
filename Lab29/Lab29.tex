@@ -34,9 +34,25 @@
 \usepackage{longtable}
 \usepackage{array}
 \usepackage[english,russian]{babel}
+\usepackage{floatrow}
+\usepackage{caption}
+\usepackage{textcomp}
 
 % выделение ссылок цветом. чтобы включить- true
 \usepackage[colorlinks=false]{hyperref}
+
+\graphicspath{{figures/}}
+
+\floatsetup[tabular]{style=ruled,
+  objectset=raggedright,
+  margins=raggedright,
+  midcode=captionskip,
+  captionskip=10pt}
+\floatsetup[figure]{%
+  objectset=raggedright,
+  margins=raggedright,
+  midcode=captionskip,
+  captionskip=10pt}
 
 \renewcommand{\rmdefault}{cmr} % курсив и полужирный включаются здесь.
 \newcommand{\eqdef}{\stackrel {\rm def}{=}}
@@ -119,5 +135,137 @@
 
 % Раздел "Введение"
 \intro
+
+\par Целью данной лабораторной работы служит ознакомление с основными характеристиками логических 
+элементов и основами синтеза логических схем.
+
+\newpage
+
+\section*{Задание 1.}
+\addcontentsline{toc}{section}{Задание 1}
+
+\par Запустить лабораторный комплекс Labworks и среду МS10 . Открыть файл \textbf{29.2.ms10}, 
+размещенный в папке \textbf{Circuit Design Suitе 10.0} среды МS10, или собрать на рабочем поле 
+среды MS10 схему для испытания \textit{основных и базовых логических элементов} и установить в 
+диалоговых окнах компонентов их параметры или режимы работы. Скопировать схему в отчет.
+
+\begin{figure}[h]
+\center{\includegraphics{circuit.png}}
+\caption{Схема с основными и базовыми логическими элементами.}
+\end{figure}
+
+\newpage
+
+\par Оперируя ключами $ 1, 2, \dots, 9, $ сформировать все возможные комбинации аргументов $ x_1 $ 
+и  $ x_2 $  (00, 10, 01 и 11) на входе дизъюнктора (\textbf{OR}), конъюнктора (\textbf{AND}), 
+штриха Шеффера (\textbf{NAND}) и стрелки Пирса (\textbf{NOR}) и записать значения выходных 
+логических функций $ y_k $ (0 или 1) в таблицу.
+
+\begin{table}[h]
+	\captionsetup{justification=centering}
+	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}	
+		\hline	
+		\multicolumn{3}{|c|}{[\textbf{OR}]} & \multicolumn{3}{|c|}{[\textbf{AND}]} & 
+		\multicolumn{2}{|c|}{[\textbf{NOT}]} & \multicolumn{3}{|c|}{[\textbf{NAND}]} &
+		\multicolumn{3}{|c|}{[\textbf{NOR}]} \\
+		\hline
+		$ \; x_1 \; $ & $ \; x_2 \; $ & $ \; y \; $ & $ \; x_1 \; $ & $ \; x_2 \; $ & $ \; y \; $ 
+		& $ \; x \; $ & $ \; y \; $ & $ \; x_1 \; $ & $ \; x_2 \; $ & $ \; y \; $ & $ \; x_1 \; $ 
+		& $ \; x_2 \; $ & $ \; y \; $ \\
+		\hline
+		0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 1 \\
+		\hline
+		0 & 1 & 1 & 0 & 1 & 0 & 0 & 1 & 0 & 1 & 1 & 0 & 1 & 0 \\
+		\hline
+		1 & 0 & 1 & 1 & 0 & 0 & 1 & 0 & 1 & 0 & 1 & 1 & 0 & 0 \\
+		\hline
+		1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 0 \\
+		\hline	
+	\end{tabular}
+	\caption{Таблица истинности основных и базовых логических операций.}
+\end{table}
+
+\newpage
+
+\section*{Задание 2.}
+\addcontentsline{toc}{section}{Задание 2}
+
+\par Собрать схему для реализации логической функции $ y $ с тремя аргументами $ a, b $ и $ c. $
+Скопировать собранную логическую схему в отчет. Функция $ y $ имеет вид: $ y = (a + b + \neg c)
+(\neg a + \neg b c)(a + \neg b + \neg c) $ (вариант \textnumero 2).
+
+\begin{figure}[h]
+	\center{\includegraphics{my_circuit.png}}
+	\caption{Схема заданной логической функции.}
+\end{figure}
+
+\begin{table}[h]
+	\captionsetup{justification=centering}
+	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+		\hline
+		\multicolumn{4}{|c|}{$ y_1 = a + b + \neg c $} & \multicolumn{4}{|c|}{$ y_2 = \neg a + \neg b c $} & 
+		\multicolumn{4}{|c|}{$ y_3 = a + \neg b + \neg c $} & $ y = y_1 \wedge y_2 \wedge y_3 $ \\
+		\hline
+		$ \; a \; $ & $ \; b \; $ & $ \; c \; $ & $ \; y_1 \; $ & 
+		$ \; a \; $ & $ \; b \; $ & $ \; c \; $ & $ \; y_2 \; $ &
+		$ \; a \; $ & $ \; b \; $ & $ \; c \; $ & $ \; y_3 \; $ &
+		$ y $ \\
+		\hline
+		0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 1 \\
+		\hline
+		0 & 0 & 1 & 0 & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 1 & 0 \\
+		\hline
+		0 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 1 \\
+		\hline
+		0 & 1 & 1 & 1 & 0 & 1 & 1 & 1 & 0 & 1 & 1 & 0 & 0 \\
+		\hline
+		1 & 0 & 0 & 1 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 0 \\
+		\hline
+		1 & 0 & 1 & 1 & 1 & 0 & 1 & 1 & 1 & 0 & 1 & 1 & 1 \\
+		\hline
+		1 & 1 & 0 & 1 & 1 & 1 & 0 & 0 & 1 & 1 & 0 & 1 & 0 \\
+		\hline
+		1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 1 & 1 & 1 & 1 & 0 \\
+		\hline
+	\end{tabular}
+	\caption{Таблица истинности заданной логической функции.}
+\end{table}
+
+\newpage
+
+% функция Пирса = 1 ттт x1 = x2 = 0 nor \\
+% функция шеффера = 0 ттт x1 = x2 = 1 nand
+
+\section*{Перечень приборов, использованных в экспериментах.}
+\addcontentsline{toc}{section}{Перечень приборов, использованных в экспериментах}
+
+\par В ходе лабораторной работы использовались следующие приборы: 
+\par \textbf{Генератор прямоугольных сигналов} $ V_1 $ с амплитудой $ E $ = 5 B, длительностью импульса
+$ t_u $ = 2 с и периодом $ T $ = 4 с.
+\par \textbf{Три ключа}: $ J_1, J_2, J_3 $.
+\par \textbf{Три инвертора} NOT ($ U_1, U_2, U_3 $) для получения инверсий $ \neg a, \neg b, \neg c $.
+\par \textbf{Три дизъюнктора}: OR2 для реализации функции $ y_2 = \neg a + \neg bc $ и два OR3 для реализации
+функций $ y_1 = a + b + \neg c $ и $ y_3 = a + \neg b + \neg c $.
+\par \textbf{Два конъюнктора}: AND2 для реализации функции $ \neg b c $ и AND3 для реализации функции 
+$ y = y_1 \wedge y_2 \wedge y_3 $.
+\par \textbf{Пробник} X1 с пороговым напряжением 5 В. 
+
+\newpage
+
+\section*{Тестовые задания.}
+\addcontentsline{toc}{section}{Тестовые задания}
+
+1. Укажите \textbf{признаки}, характеризующие основные логические элементы:
+
+2. Укажите \textbf{выражение} логической функции двух переменных $ x_1 $ и $ x_2 $, реализуемой элементом
+<<стрелка Пирса>>:
+
+\newpage
+
+\conclusion
+
+\newpage
+
+
 
 \end{document}
